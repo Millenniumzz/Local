@@ -1,9 +1,9 @@
 import React from "react";
-import RestBasic from "./rest-basic";
+import FormPost from "./form-post";
 
-function App() {
-  return (<RestBasic/>  
+
+export default function App() {
+  return (<FormPost/>  
   );
 }
 
-export default App;

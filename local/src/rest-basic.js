@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function RestBasic() {
-    let [serverTime, setServerTime] = React.useState({});
+    let [serverTime, setServerTime] = React.useState('');
     let [footballResult, setFootballResult] = React.useState('');   
 
     const onClickShowTime = () => {

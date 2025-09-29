@@ -6,31 +6,20 @@ app.use(express.urlencoded({ extended: true     }));
 app.use(express.json());
 app.use(express.static('public'));
 
-app.get('/api/server-time', (req, res) => {
-    let now = new Date()
-    let time ={
-        hour:now.getHours(),
-        minute:now.getMinutes(),
-        second:now.getSeconds()
-    }
-    res.json(time);
-    })
-function rd(min,max){
-    let x =(max-min)+1;
-    return Math.floor(Math.random()*x)+min;
-}
-app.get('/api/football-result', (req, res) => {
-    let table =`
-    <table border="1" style="margin: 7px auto">
-    <tr><td>Liverpool</td><td>${rd(0,5)}</td></tr>
-    <tr><td>Manchester United</td><td>${rd(0,5)}</td></tr>
-    <tr><td>Chelsea</td><td>${rd(0,5)}</td></tr>    
-    <tr><td>Arsenal</td><td>${rd(0,5)}</td></tr>
-    <tr><td>Manchester City</td><td>${rd(0,5)}</td></tr>
+app.post('/api/form-post', (req, res) => {
+    let name = req.body.name ||''
+    let email = req.body.email ||''
+    let msg = req.body.message ||''
+    let text = `
+    <table border="1">
+        <caption>ข้อมูลที่ติดต่อมา</caption>
+        <tr><td>ชื่อ-สกุล:</td><td>${name}</td></tr>
+        <tr><td>อีเมล:</td><td>${email}</td></tr>
+        <tr><td>ข้อความ:</td><td>${msg}</td></tr>
     </table>
-    `
-    res.send(table);
-    
+    `   
+    res.send(text);
+
 })
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
